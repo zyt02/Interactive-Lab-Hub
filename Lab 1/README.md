@@ -3,6 +3,7 @@
 # Staging Interaction
 
 \*\***NAME OF COLLABORATOR HERE**\*\*
+- name of collaborators : Charlotte Lin (hl2575), Jessica Hsiao (dh779), Irene Wu(yw2785)
 
 In the original stage production of Peter Pan, Tinker Bell was represented by a darting light created by a small handheld mirror off-stage, reflecting a little circle of light from a powerful lamp. Tinkerbell communicates her presence through this light to the other characters. See more info [here](https://en.wikipedia.org/wiki/Tinker_Bell). 
 
@@ -73,14 +74,30 @@ _Goals:_ What are the goals of each player? (e.g., jumping to a tree, opening th
 The interactive device can be anything *except* a computer, a tablet computer or a smart phone, but the main way it interacts needs to be using light.
 
 \*\***Describe your setting, players, activity and goals here.**\*\*
+- This interaction will take place at a work out or training session, which can occur either in indoor or outdoor settings. The primary user (player) in this interaction is the person undergoing the  training, such as an athelete. As the device is not limited to being used in indoor or outdoor, it is possible that there are other people next to the main player, such as instructors, coaches, or fellow athletes. Despite other people's presence, the interaction between the device and the main player will not be impacted by external distractions or nearby activity. The main player will be wearing this device on a part their body so that the device reamains secure, visible, and easily accessible during training. he device is designed to monitor and inform the user about their training intensity. This is primarily measured through heart rate (beats per minute). The device uses a color-coded system to represent different levels of training intensity, providing immediate visual feedback to the user.
+- The device would have 5 different light colors based on stages of heart rate as in the following table.
+The following table is the 5 stages provided by American College of Sports Medicine.
+
+![Alt text](assets/intensityzone.png)
+
+HRmax: Maximum heart rate, which is the number of heartbeats per minute that your heart can reach during exercise. In most cases, people use 220 minus their age to calculate the number. 
+HRR: Heart rate reserve, which is the difference between maximum heart rate and resting heart rate. Resting heart rate is the number of heartbeats per minute when the person is not exercising.
+In this scenario, we use %HRmax to categorize each stage of working out. As the following table indicates, different colors are assigned to different Intensity Zones. These colors can easily notify people on their interactive devices. We align the color schema with the intuitive perception of intensity, where white denotes a neutral baseline, blue represents a sense of calm, green conveys a balanced state, yellow suggests higher activity, and red signifies maximum intensity.
+
+![Alt text](assets/colorzone.png)
+
 
 Storyboards are a tool for visually exploring a users interaction with a device. They are a fast and cheap method to understand user flow, and iterate on a design before attempting to build on it. Take some time to read through this explanation of [storyboarding in UX design](https://www.smashingmagazine.com/2017/10/storyboarding-ux-design/). Sketch seven storyboards of the interactions you are planning. **It does not need to be perfect**, but must get across the behavior of the interactive device and the other characters in the scene. 
 
 \*\***Include pictures of your storyboards here**\*\*
 
+![Alt text](assets/storyboard.png)
+
 Present your ideas to the other people in your breakout room (or in small groups). You can just get feedback from one another or you can work together on the other parts of the lab.
 
 \*\***Summarize feedback you got here.**\*\*
+- A classmate mentioned that the device is practical and particularly useful given that people value their health management nowadays. Another classmate suggests that we could also detect the blood oxygen level, which is another important indicator in exercise, to provide more information, allowing the device to analyze the exercise level of the user more accurately.
+
 
 
 ## Part B. Act out the Interaction
@@ -88,8 +105,11 @@ Present your ideas to the other people in your breakout room (or in small groups
 Try physically acting out the interaction you planned. For now, you can just pretend the device is doing the things you’ve scripted for it. 
 
 \*\***Are there things that seemed better on paper than acted out?**\*\*
+- In the planning stage, we expected users to raise their hands to check the light while running, which seems to be intuitive and easy to perform because it is similar to the act of checking the time on a watch. In practice, we found two problems with using a device that emits light. The first one is that the runner would not know when to check the device; as a result, they have to check it regularly. The other problem is that when the user is running, raising their hands to check the light requires extra effort, which distracts them from focusing on running.
+
 
 \*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+- One solution we came up with is that we could use vibration instead of light, making it effortless for the user to receive feedback from the device. With this type of notification, users can receive information passively rather than keep actively checking their status. We noticed that placement really matters. Wearing the device on the wrist works fine when you’re not moving much, but during more intense activities like running or cycling, it’s harder to check quickly. An armband or chest strap with a front-facing light could work better for runners since the light would stay in their line of sight and be easier to notice without extra effort.
 
 
 ## Part C. Prototype the device
@@ -103,16 +123,18 @@ We invented this tool for this lab!
 If you run into technical issues with this tool, you can also use a light switch, dimmer, etc. that you can can manually or remotely control.
 
 \*\***Give us feedback on Tinkerbelle.**\*\*
-
+-  The process of setting up Tinkerbelle was very easy. Despite the issue with network and version compatability, the instructions are clear and the trouble shooting methods are useful as well.
 
 ## Part D. Wizard the device
 Take a little time to set up the wizarding set-up that allows for someone to remotely control the device while someone acts with it. Hint: You can use Zoom to record videos, and you can pin someone’s video feed if that is the scene which you want to record. 
 
 \*\***Include your first attempts at recording the set-up video here.**\*\*
+- link to video : [https://drive.google.com/drive/folders/1-UZNWlaaXBWAfdHco78UJXUNBQaKrdvQ?usp=drive_link](https://drive.google.com/file/d/1lBuOQgfDV5vhn_OHFBliLLEAPfHmSMHr/view?usp=sharing)
 
 Now, change the goal within the same setting, and update the interaction with the paper prototype. 
 
 \*\***Show the follow-up work here.**\*\*
+- Another goal is to use the device as a customizable training timer. The athlete wearing the device can program how long each training session or segment should take. Each color corresponds to a specific session, for example, warm-up, high intensity intervals or rest periods. Based on these settings, the device will use the lights to inform the transitions of sessions in real time. By allowing the user to stay focused on the performance without needing to check an external timer, the device can ensure a more immersive and efficient experience for the user. 
 
 
 ## Part E. Costume the device
@@ -123,16 +145,22 @@ Think about the setting of the device: is the environment a place where the devi
 
 \*\***Include sketches of what your devices might look like here.**\*\*
 
+![Alt text](assets/devicedesign.png)
+
 \*\***What concerns or opportunitities are influencing the way you've designed the device to look?**\*\*
+- The design is primarily shaped by several key concerns, including visibility, stability, comfort, device size, potential interference with the athlete's motion, sweat resistance, and the accuracy of data collected. Addressing these challenges is essential to ensure the device performs reliably during intense physical activity. 
+At the same time, the device also presents valuable opportunities including providing real time feedback, offering customizable user experience, enhancing motion through visual cues, and enabling integration with other devices to support broader training goals. 
 
 
 ## Part F. Record
 
 \*\***Take a video of your prototyped interaction.**\*\*
+- link to video : [https://drive.google.com/drive/folders/1-UZNWlaaXBWAfdHco78UJXUNBQaKrdvQ?usp=drive_link](https://drive.google.com/file/d/1P2uAy3tRcriqTgwgDtHuwHF4V8N8J670/view?usp=sharing)
 
 \*\***Please indicate who you collaborated with on this Lab.**\*\*
 Be generous in acknowledging their contributions! And also recognizing any other influences (e.g. from YouTube, Github, Twitter) that informed your design. 
-
+- device design influence : Apple Watch, American College of Sports Medicine. 
+- collaborators : Charlotte Lin (hl2575), Jessica Hsiao (dh779), Irene Wu(yw2785)
 
 
 # Staging Interaction, Part 2 
@@ -154,3 +182,63 @@ Do last week’s assignment again, but this time:
 3) We will be grading with an emphasis on creativity. 
 
 \*\***Document everything here. (Particularly, we would like to see the storyboard and video, although photos of the prototype are also great.)**\*\*
+
+\*\***Describe your setting, players, activity and goals here.**\*\*
+Given our previous design, we update the device to have 2 modes.
+1. Individual mode : the device is a personalized trainer mode with a guided AI plan (AI builds a plan based on history, goals, and preferences)
+Setting : The interaction takes place during a workout session, whether at home, in a gym/fitness studio, or any environment the user chooses.
+Players : The primary player is the exerciser, who is the person actively training with the device. Depending on where the user is at, there could be secondary players; for example, roommates or partners who share the same living space, children who may be present and interact with the device unintentionally, or fellow gym-goers if the workout takes place in a public setting.
+Activity : The user will begin a workout session, and the device will monitor the performance and physiological metrics, including heart rate and skin temperature. The device will also provide a countdown to inform the user about the time remaining for each exercise or rest period, while simultaneously delivering motivational feedback through vibration, sound, or a color progress bar to keep them engaged. When the workout session ended, the device will also provide session summary.
+Goal : The device’s primary goal is to support the user in completing workouts effectively by leveraging AI to deliver real-time guidance, track progress, improve performance, and sustain motivation through multimodal feedback.
+2. Group mode: 
+Setting : The interaction will occur in a group workout session, such as a workout class, bootcamp, or small training group, where multiple participants train simultaneously in a shared environment. This could be in a gym studio, outdoor park, or even a virtual group session.
+Players : The players are the exercisers participating in the workout class. In group mode, the instructor can monitor the device signals to track each participant’s state throughout the session.
+Activity : Participants engage in a structured workout routine led by an instructor or guided by shared device cues. The device provides visual and auditory feedback, such as lights indicating progress, heart rate zones, or alerts when intensity drops. Lights may also signal the instructor when individuals struggle (ex: turning red if performance metrics fall below the threshold). Group features include setting shared or paired goals, competing in small teams, or earning collective achievements. Real-time stats such as heart rate, cadence, and calories burned may be displayed or shared within the group to foster motivation and accountability.
+Goal : The device’s primary goal in group mode is to enhance the social and motivational aspects of training. By providing collective progress indicators and encouraging friendly competition, it strengthens team bonding and keeps participants engaged. It also assists instructors by flagging safety or performance issues, ensuring participants stay in safe zones. Ultimately, the device aims to make workouts more interactive, collaborative, and emotionally rewarding, inspiring participants to push further while maintaining a fun, social atmosphere.
+
+\*\***Story Board.**\*\*
+
+![Alt text](assets/storyboard2.png)
+
+\*\***Are there things that seemed better on paper than acted out?**\*\*
+We initially ideated around a “couples” feature within the group mode. While it is an interesting offering, after acting it out, we realized this is not much different from a normal group mode. We then decided to focus solely on a group workout scenario rather than developing more around the couples workout idea
+During the brainstorming stage, we discussed the possibility to use this device for groups doing workout sessions to compete with each other. The vision was to use lighting or other haptic feedback to signify the start of a mini-competition, keep score, and give rewards. However that may be deviating from the original purpose of this device and is a bit more complicated than we expected. Thus this idea was dropped.
+
+\*\***Are there new ideas that occur to you or your collaborator that come up from the acting?**\*\*
+We realized there might be some workout/exercises that require equipment or hand movement that could interfere with a wearable device on the wrist. To deal with this issue, we explore a new idea to costume our device as a necklace or an earring.
+
+Pros and cons of each:
+Earrings
+- Pro
+  - Super agile/lightweight
+  - Easier to hear instructions/sound feedback in a group setting or outdoor environment
+- Con
+  - Not everyone has piercings
+  - Hard to design with comfort
+  - Easy to lose
+  - Screen size is extremely tiny for light feedback
+Necklace:
+- Pro
+  - Easy to put on - accessibility
+  - Easy to hear instructions/sound feedback in a group setting or outdoor environment
+  - Easy to spot a vibration/haptic feedback
+  - Easy to see other’s light/feedback in a group setting
+- Con
+  - Needs to be adjustable for fitting
+  - Screen may be slightly smaller than a watch solution
+  - 
+\*\***Include sketches of what your devices might look like here.**\*\*
+
+![Alt text](assets/devicesketch2.png)
+![Alt text](assets/devicesketch.png)
+
+\*\***What concerns or opportunities are influencing the way you've designed the device to look?**\*\*
+- Opportunities : The main opportunity we envisioned when designing the device was to enhance the overall workout experience. By prioritizing simplicity and convenience, the device allows users to set up easily and integrate the device seamlessly into their routines. In group mode, the device can also inform the instructors about each participant's status, enabling them to monitor progress and identify when someone needs additional support. Through combining visual, auditory, and haptic cues, the device can adapt individual user preferences and make the experience more engaging. We were hoping that by using multimodality, the accessibility of the device can also be improved, ensuring users with different abilities or preference can engage effectively. In addition, we took multimodality as an opportunity to motivate the users through reinforcing feedback across multiple channels.
+- Concerns : First, a major concern is data privacy and security issues. Users may raise concern about health and performance data being stored and analyzed by AI. Secondly, as the device is multimodal, some users may find the cues overwhelming or distracting. In a shared or public environment, the cues could be disruptive to others nearby. Last but not least, accessibility barriers may still arise, since not all users respond well to certain feedback modes (e.g. color-blind users with color progress bar, or users with hearing impairment). 
+
+
+\*\***Take videos of your prototyped interaction.**\*\*
+Scenario:
+- Individual mode: https://drive.google.com/file/d/1K1aw3PNWgM-OJL79RjlGofNr_xIh1wm5/view
+- Group mode: https://drive.google.com/file/d/1ozwTyPeyrAnQL-ItFWSgo7sV5inEX97l/view
+

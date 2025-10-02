@@ -191,12 +191,23 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
+- Idea 1 
+![Alt text](asset/lab2sketch.png)
+This is a hydration-aware clock. This functions not like a traditional clock, but more like a reverse timer that resets when you hydrate. In other words, rather than counting down minutes or hours of the day, this clock shows how much time has passed since you last drank water. When the user take a drink, a simple interaction with the device (like tapping a button) resets the timer, and the display returns to baseline.
+
+Some of the possible features include :
+- water intake counter, hydration progress tracker
+- visual metaphor (a droplet evaporating or a desert landscape drying out)
+- optional goal indicator (example: 8 cups per day)
+- sound (soft water-drop sounds or chimes after a long hydration gap) or visual cue (gentle screen glow or pulsing animation) if it’s been too long.
+  
+Another advance feature I have in mind is to adjust the hydration goal with weather information. For example, on hot days, the device could subtly increase reminders or adjust daily goals. If it's possible, the device should also have dark/light mode for energy and eye comfort.
+
+(graphics are made with Canva)
 
 # Prep for Part 2
 
 1. Pick up remaining parts for kit on Thursday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
-  
-
 2. Look at and give feedback on the Part G. for at least 2 other people in the class (and get 2 people to comment on your Part G!)
 
 # Lab 2 Part 2
@@ -236,8 +247,35 @@ After that, Git will ask you to login to your GitHub account to push the updates
 
 Modify the code from last week's lab to make a new visual interface for your new clock. You may [extend the Pi](Extending%20the%20Pi.md) by adding sensors or buttons, but this is not required.
 
-As always, make sure you document contributions and ideas from others explicitly in your writeup.
+- The final device sktech is as following : 
+![Alt text](asset/sketch.png)
+(cr: graphics from Canva)
 
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
+I hope this device allows user to use this clock flexibily, so that they are aren’t locked into one function : they can switch between stopwatch and counter without losing progress. To give user more control over their experience in using the device, users can skip celebrations or reminders if they want by simply long press assigned buttons. 
+
+The following story board is to depict how users can interact with this device : 
+![Alt text](asset/storyboard.png)
+
+- 1. `stopwatch mode` : This mode lets users easily track time with a stopwatch that shows hours, minutes, and seconds, with simple controls to start, pause, or reset. While timing, users can seamlessly switch to another mode at any moment (counter mode). Based on feedback from user testing, a hydration reminder was added after 5 minutes of activity, the device automatically displays a scrolling ‘Hydration time!’ message. This ensures users are gently reminded to drink water, and they can continue in either stopwatch or counter mode once acknowledged.
+
+- 2. `counter mode` : This mode helps users track the number of cups of water they drink. With each press of Button A, the count increases by one. When I asked my roomates to use the device, one concern they raised is that user may lose motivation. Therefore, the celebration feature was added to reward progress and encourage continue drinking water. In order to make this hydration tracking more engaging, a bubble/confetti celebration appears for ~4 seconds whenever users hit milestones (5, 10, 15…). Users can exit the celebration at any time and return to the normal counter display. 
+
+- These are the link to the video :
+  - link 1 (stopwactch mode, counter mode & celebration): https://drive.google.com/file/d/1nkph9NilkDPLut_DveHWeBRRzwOdA7tm/view?usp=sharing
+  - link 2 (hydration reminder): https://drive.google.com/file/d/1PNAduc30-kr_18eO4fQNwGMyJReDBWcc/view?usp=sharing
+    
+- This is a table summarizing how the users can interact with the clock : 
+
+| **Mode**                           | **Button / Trigger** | **Press Type**    | **Action / Effect**                                                       |
+| ---------------------------------- | -------------------- | ----------------- | ------------------------------------------------------------------------- |
+| **Stopwatch**                      | A                    | Short press       | Start / pause stopwatch                                                   |
+| **Stopwatch**                      | B                    | Short press       | Switch to Counter mode                                                    |
+| **Stopwatch**                      | B                    | Long press        | Reset stopwatch (`elapsed = 0`, stop running)                             |
+| **Stopwatch**                      | —                    | Auto trigger      | Hydration reminder: scrolling `"Hydration time!"` appears after 5 minutes |
+| **Stopwatch / Hydration Reminder** | B                    | Long press / stop | Exit hydration reminder and return to Stopwatch mode                      |
+| **Counter**                        | A                    | Short press       | Increment `cup_count` by 1                                                |
+| **Counter**                        | B                    | Short press       | Switch to Stopwatch mode                                                  |
+| **Counter**                        | —                    | Auto trigger      | Celebration: confetti/bubbles when `cup_count` reaches multiples of 5     |
+| **Counter / Celebration**          | A                    | Long press / exit | Exit celebration overlay and return to Counter display                    |
 
 

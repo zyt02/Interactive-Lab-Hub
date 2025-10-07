@@ -1,5 +1,5 @@
 # Chatterboxes
-**NAMES OF COLLABORATORS HERE** : Charlotte Lin, Eva Huang (we brainstormed together and help each other with filming the videos but developed on our own)
+**NAMES OF COLLABORATORS HERE** : Charlotte Lin, Eva Huang 
 
 In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
 
@@ -291,6 +291,7 @@ We worked together to act out and test out the dialouges
 In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
 </details>
 
+-----
 
 # Lab 3 Part 2
 
@@ -303,11 +304,6 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 3. Make a new storyboard, diagram and/or script based on these reflections.
 
 ## Prototype your system
-
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
 
 *Document how the system works*
 
@@ -333,65 +329,106 @@ Prototype your system
 
 **Document how the system works**
 
-### Voice Command Reference Table
+### Command Reference Table
 
-| Command Type                   | System action                                                            | Example Response Spoken by Assistant       |
-| ------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------ |
-| Start Game                     | Initializes a new game session with default balances                     | Game started! all begin with .... Let the game begin!
-| Update score                   | Activates score update mode (assistant wait for a player name and amount)| Ready to update. Please say which user and how much. |
-| User# plus / minus amount      | Parses command, updates that player’s score locally                      | Understood...Their new balance is...|
-| Game Help / Instructions       | Input is sent to Ollama for conversational response                      | This rule means ....|
-| Exit / Stop Game               | Ends or pauses the current session                                       | Good bye!           |
+| Command / Action              | Input Type                          | System Action                                                              | Example Response Spoken by Assistant                                         |   |   |
+| ----------------------------- | ----------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | - | - |
+| Start Game                    | Voice                               | Initializes a new game session, ask user to input number of users          | Please touch a pad to indicate the number of players                         |   |   |
+| Entern Number of Players             | Sensor (touch pad for player count) | Process the user's input through the touch pad                             | Game started! User1, User2, User3 all begin with $10000. Let the game begin! |   |   |
+| Update Score                  | Voice                               | Activates score update mode (assistant waits for a player name and amount) | Ready to update. Please say which user and how much.                         |   |   |
+| User# plus / minus amount     | Voice                               | Parses command, updates that player’s score locally                        | Understood. User1 received $300. Their new balance is $10300.                |   |   |
+| Show Scores                   | Voice                               | Displays current player balances                                           | Current scores are: User1: $10300, User2: $9700, User3: $10000               |   |   |
+| Exit / Stop Game              | Voice                               | Ends or pauses the current session                                         | Goodbye! Have a great day!                                                   |   |   |
+| Punishment                    | Voice                               | Generates 5 AI-powered punishment suggestions                              | Option 1. Do a 30 second victory dance for the winning team.                 |   |   |
+| Punishment Type Selection     | Sensor (touch pad 0–4)              | Select one of the AI-generated punishments                                 | You selected option 2: Tell a joke to make everyone laugh                    |   |   |
+| Punishment User Selection | Voice                               | Listen to user input to select the user who recieve punishment                 | no specific response, but assistant will say "touch a pad to select punishment duration" to proceed with duration selection
+| Punishment Duration Selection | Sensor (touch pad 5–11)             | Select duration of punishment                                              | Duration set to 15 seconds                                                   |   |   |
+| Run Punishment Countdown      | System                              | Displays countdown for selected player and punishment                      | Time up! Great job Player2!                                                  |   |   |
+| Game Help / Instructions      | Voice                               | Input sent to Ollama for conversational explanation                        | This rule means ...                                                          |   |   |
 
 
-**video example** a short interaction flow with `Start Game` ->   `updating score` ->  `User# plus / minus amount` : 
+
+### Touch Sensor Notes  Table
+| Action                        | User Action                                                          | Notes / Mapping                                                                            |
+| ----------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Initialize Number of Players        | Touch a pad 1–11 to indicate number of players                       | Pad 2 = 2 player, Pad 3 = 3 players...                              |
+| Punishment Type Selection     | Touch pad 0–4 to select one of the 5 AI-generated punishment options | Pad 0 = Option 1, Pad 1 = Option 2, Pad 2 = Option 3, … Pad 4 = Option 5                   |
+| Punishment Duration Selection | Touch pad 5–11 to select duration in seconds                         | Pad 5 = 5s, Pad 6 = 10s, Pad 7 = 15s, Pad 8 = 20s, Pad 9 = 30s, Pad 10 = 45s, Pad 11 = 60s |
+
+
+
+**video example**  `Start Game` -> ` Enter number of players` -> `update score` ->  `User# plus / minus amount` : 
+- After the user start the game with voice control, user can touch the pad to indicate how many players there are for this game
 - Commands like “update score” trigger a short interaction flow, where the system waits for the next instruction (player + amount).
-- https://drive.google.com/file/d/1HhdrmiOA_byqOb5o5xpfLKfEHgac6rQq/view?usp=sharing
+- https://drive.google.com/file/d/1G3Y2ljqYQE7NIuNFt3YNdnzj_blnpvc8/view?usp=drive_link
 
-**video example**  `game help / instructions` :
+**video example**  `Punishment ` -> ` Punishment Type Selection` -> ` Punishment User Selection` -> `Punishment Duration Selection` -> `Run Punishment Countdown`  :
+- Users ask the device (assistant) for punishment ideas, touch sensor to select pushishment types, touch sensor to select punishment duration
+- https://drive.google.com/file/d/1GnMq-7LttGka26wA3vRnvQHRhy9rxtnM/view?usp=drive_link
+
+**video example**  `Game help / instructions` :
 - Users ask the device (assistant) questions about the game's rule, device output AI-generated response
 - https://drive.google.com/file/d/1Ej2u_rBWTT5JamR8uJ0Miz2fz1tgFu0Z/view?usp=drive_link
 
 
-
 ### System Documentation
-
 ### 1. Architecture
-**a. Input Layer**
-- Microphone capture using speech_recognition library.
-- Converts audio input into text via Google Speech Recognition (cloud-based).
-- Handles:
-    - Ambient noise calibration.
-    - Timeouts for listening.
-    - Speech recognition errors.
 
-**b. Processing Layer**
-- Core class: OllamaVoiceAssistant.
+#### a. Input Layer
+- Captures user input via two mechanisms:
+  1. **Microphone**
+     - Uses `speech_recognition` library.
+     - Converts audio into text using Google Speech Recognition (cloud-based).
+     - Handles:
+       - Ambient noise calibration.
+       - Timeouts for listening.
+       - Speech recognition errors.
+  2. **MPR121 Touch Sensor**
+     - Detects touch on capacitive pads via `adafruit-circuitpython-mpr121`.
+     - Used for:
+       - Selecting number of players (pad 0–11).
+       - Selecting punishment type (pad 0–4).
+       - Selecting punishment duration (pad 5–11).
+     - Debouncing implemented to prevent multiple accidental triggers.
+
+#### b. Processing Layer
+- Core class: `OllamaVoiceAssistant`.
 - Responsibilities:
-    - Maintain player scores in self.player_scores. (score updates are purely local — Ollama is only invoked for general conversation, greetings, or questions not related to score tracking)
-    - Detect and handle score commands with regex.
-    - Manage conversation state flags
-        1. score_initialized: Has the game started?
-        2. waiting_for_score_update: Is the assistant waiting for a score update?
-        3. Sends user queries 
-        4. Optional system prompt for assistant persona
+  - **Score Management**
+    - Maintains player scores in `self.player_scores`.
+    - Score updates are local only; Ollama is not used for calculations.
+    - Detects and parses score commands using regex (`parse_score_command`).
+    - Manages game state flags:
+      1. `score_initialized`: Has the game started?
+      2. `waiting_for_score_update`: Is the assistant waiting for a score update?
+  - **Punishment Management**
+    - Retrieves AI-generated punishment suggestions from Ollama (`get_punishment_suggestions`).
+    - Handles selection via touch sensor (`wait_for_touch_punishment`, `wait_for_touch_duration`).
+    - Runs punishment countdown and displays it with audio feedback (`display_punishment_countdown`).
+  - **Conversation Management**
+    - Routes general user queries to Ollama (`query_ollama`) for conversational responses.
+    - Manages greetings, help, and non-score-related questions.
+    - Optional system prompt to set assistant persona.
 
-**c. Output Layer**
-- Provides feedback via:
-    - Text-to-speech using espeak.
-    - Console printout for debugging/logging.
-- Outputs:
-    - Player score updates.
-    - Game instructions (AI-generated responses)
-
-**2. Error Handling**
-- Timeout → prompts user to retry.
-- Unrecognized audio → asks user to repeat.
-- Score parsing errors: Invalid format → assistant instructs correct phrasing.
-- API errors: Ollama API offline or slow → returns informative message.
+#### c. Output Layer
+- Provides user feedback via:
+  1. **Text-to-Speech (TTS)**
+     - Uses `espeak` to read out:
+       - Player score updates.
+       - Punishment instructions and countdown.
+       - General AI-generated responses (greetings, help, rules explanations).
+  2. **Console / Terminal**
+     - Prints debug information and user feedback.
+     - Displays:
+       - Player scores.
+       - Punishment options and countdown.
+       - Touch sensor feedback for selection of options and durations.
 
 ![Alt text](assets/system.png)
 
+### 2. User Interaction Flow Chart
+
+![Alt text](assets/userflow.png)
 
 **What worked well about the system and what didn't?**
 - 1. Initially, I tried to have the assistant keep track of players’ names (e.g., Charlotte, Eva, and Zoe). However, after several trials, I realized that the speech-to-text recognition often failed to correctly capture the names. To fix this issue, I replaced the names with generic identifiers such as “user 1,” “user 2,” and “user 3.” This change improved accuracy, as the speech recognizer could more reliably detect which user’s score needed to be updated.
@@ -470,14 +507,4 @@ It is possible to use the current prototype to collect multimodal logs of intera
 - Intents and actions: Automatically label each command with the interpreted intent (e.g., start_game, update_score, query_balance).
 - Timing and error data: Record timestamps, response delays, and any cases where the system had to ask for clarification.
 Over time, this would produce a valuable dataset for training or fine-tuning.
-
-
-
-
-
-
-
-
-
-
 

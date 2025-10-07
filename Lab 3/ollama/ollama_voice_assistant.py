@@ -28,12 +28,13 @@ if sys.stderr.encoding != 'UTF-8':
     import codecs
     sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
-try:
-    import pyttsx3
-    TTS_ENGINE = 'pyttsx3'
-except ImportError:
-    TTS_ENGINE = 'espeak'
-    print("pyttsx3 not available, using espeak for TTS")
+#try:
+#    import pyttsx3
+#    TTS_ENGINE = 'pyttsx3'
+#except ImportError:
+#    TTS_ENGINE = 'espeak'
+#    print("pyttsx3 not available, using espeak for TTS")
+TTS_ENGINE = 'espeak'
 
 class OllamaVoiceAssistant:
     def __init__(self, model_name="phi3:mini", ollama_url="http://localhost:11434"):
@@ -43,9 +44,9 @@ class OllamaVoiceAssistant:
         self.microphone = sr.Microphone()
         
         # Initialize TTS
-        if TTS_ENGINE == 'pyttsx3':
-            self.tts_engine = pyttsx3.init()
-            self.tts_engine.setProperty('rate', 150)  # Speed of speech
+        #if TTS_ENGINE == 'pyttsx3':
+        #    self.tts_engine = pyttsx3.init()
+        #    self.tts_engine.setProperty('rate', 150)  # Speed of speech
         
         # Test Ollama connection
         self.test_ollama_connection()

@@ -461,7 +461,7 @@ Assistant: Sorry, the response took too long. Please try again.
 ```
 </details>
 
-- Initially, I tried to have the assistant keep track of players’ names (e.g., Charlotte, Eva, and Zoe). However, after testing with a few of muy friends, I realized that the speech-to-text recognition often failed to correctly capture the names. To fix this issue, I replaced the names with generic identifiers such as “user 1,” “user 2,” and “user 3.” This change improved accuracy, as the speech recognizer could more reliably detect which user’s score needed to be updated.
+- Initially, I tried to have the assistant keep track of players’ names (e.g., Charlotte, Eva, and Zoe). However, after testing with a few of my friends, I realized that the speech-to-text recognition often failed to correctly capture the names. To fix this issue, I replaced the names with generic identifiers such as “user 1,” “user 2,” and “user 3.” This change improved accuracy, as the speech recognizer could more reliably detect which user’s score needed to be updated.
 
 <details>
   <summary> Click to expand the conversation details (between the user and the device) </summary>
@@ -517,5 +517,6 @@ It is possible to use the current prototype to collect multimodal logs of intera
 - Intents and actions: Automatically label each command with the interpreted intent (e.g., start_game, update_score, query_balance).
 - Timing and error data: Record timestamps, response delays, and any cases where the system had to ask for clarification.
 Over time, this would produce a valuable dataset for training or fine-tuning.
+
 
 

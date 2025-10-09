@@ -346,8 +346,8 @@ Our device functions as a **voice-controlled game moderator** designed to make g
 
 ### Command Reference Table
 
-| Command / Action              | Input Type                          | System Action                                                              | Example Response Spoken by Assistant                                         |   |   |
-| ----------------------------- | ----------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | - | - |
+| Command / Action              | Input Type                          | System Action                                                              | Example Response Spoken by Assistant                                         |
+| ----------------------------- | ----------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | Start Game                    | Voice                               | Initializes a new game session, ask user to input number of users          | Please touch a pad to indicate the number of players                         |
 | Entern Number of Players             | Sensor (touch pad for player count) | Process the user's input through the touch pad                             | Game started! User1, User2, User3 all begin with $10000. Let the game begin! | 
 | Update Score                  | Voice                               | Activates score update mode (assistant waits for a player name and amount) | Ready to update. Please say which user and how much.                         |  
@@ -441,7 +441,7 @@ Our device functions as a **voice-controlled game moderator** designed to make g
 
 **What worked well about the system and what didn't?**
 
-- 1. Originally, when a user said phrases like “Eva plus 300,” the speech recognizer transcribed it as “Eva + 300.” However, the initial regex patterns did not account for symbols like “+,” so the command wasn’t parsed correctly. To fix this, the regex was updated to include additional patterns and symbols (e.g., “+” and “plus”), allowing the assistant to correctly recognize and process score updates. 
+- Originally, when a user said phrases like “Eva plus 300,” the speech recognizer transcribed it as “Eva + 300.” However, the initial regex patterns did not account for symbols like “+,” so the command wasn’t parsed correctly. To fix this, the regex was updated to include additional patterns and symbols (e.g., “+” and “plus”), allowing the assistant to correctly recognize and process score updates. 
 
 <details>
   <summary> Click to expand the conversation details (between the user and the device) </summary>
@@ -461,7 +461,7 @@ Assistant: Sorry, the response took too long. Please try again.
 ```
 </details>
 
--Initially, I tried to have the assistant keep track of players’ names (e.g., Charlotte, Eva, and Zoe). However, after testing with a few of muy friends, I realized that the speech-to-text recognition often failed to correctly capture the names. To fix this issue, I replaced the names with generic identifiers such as “user 1,” “user 2,” and “user 3.” This change improved accuracy, as the speech recognizer could more reliably detect which user’s score needed to be updated.
+- Initially, I tried to have the assistant keep track of players’ names (e.g., Charlotte, Eva, and Zoe). However, after testing with a few of muy friends, I realized that the speech-to-text recognition often failed to correctly capture the names. To fix this issue, I replaced the names with generic identifiers such as “user 1,” “user 2,” and “user 3.” This change improved accuracy, as the speech recognizer could more reliably detect which user’s score needed to be updated.
 
 <details>
   <summary> Click to expand the conversation details (between the user and the device) </summary>
@@ -517,4 +517,5 @@ It is possible to use the current prototype to collect multimodal logs of intera
 - Intents and actions: Automatically label each command with the interpreted intent (e.g., start_game, update_score, query_balance).
 - Timing and error data: Record timestamps, response delays, and any cases where the system had to ask for clarification.
 Over time, this would produce a valuable dataset for training or fine-tuning.
+
 

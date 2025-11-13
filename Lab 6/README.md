@@ -4,6 +4,8 @@
 #### Collaborators: Charlotte Lin (hl2575), Zoe Tseng (yzt2), Le-En Huang (lh764) 
 Use of AI for this lab: Claude Sonnet4 for image creation and debugging instructions for the code.
 
+
+
 ## Deliverables
 
 ## Part A
@@ -171,7 +173,9 @@ Inputs → MQTT messages → Moderator computes → Publishes results → Player
 (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 6 $ python moderator_rps.py
 ```
 
-2. Run client pis - 
+2. Modify player ID `PLAYER_ID=<your-playerID>`
+
+3. Run client pis - 
 
 ```
 (venv) pi@raspberrypi:~/Interactive-Lab-Hub/Lab 6 $ python player_rps.py
@@ -253,9 +257,7 @@ Code snippets with explanations
 - game result
 <img src="https://hackmd.io/_uploads/BkUMbcGlZl.jpg" width="400">
 
-**Video Demo**
-[https://youtu.be/FyOj0FAjtRE](https://)
-
+[Video Demo](https://youtu.be/FyOj0FAjtRE)
 
 **What did they think before trying:**
 (Irene Wu, Jessica Hsiao) thought it was a great idea because the game allows players to interact and compete regardless of physical distance,  as long as their Pis are connected, they can still play together in real time.
@@ -279,6 +281,7 @@ The MQTT-based communication worked reliably : each Raspberry Pi was able to sen
 **Challenges with distributed interaction**
 
 The main challenge was ensuring consistent timing and synchronization between players. Because each Pi publishes independently, the server had to handle late or missing inputs gracefully. Network latency and Wi-Fi connectivity also introduced occasional delays or dropped messages, which affected how quickly results appeared. Debugging across multiple Pis simultaneously added extra complexity.
+
 
 **How did sensor events work?**
 

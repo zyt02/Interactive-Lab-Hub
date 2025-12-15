@@ -1,4 +1,5 @@
 # Final Project Plan
+- updated on December 7th to reflect changes to the device features
 
 ### Resources
 
@@ -14,30 +15,31 @@
 
 | Team Member | Primary Module | Hardware Components | Key Responsibilities | Deliverables |
 |-------------|---------------|---------------------|---------------------|--------------|
-| **Charlotte Lin (hl2575)** | APDS Gesture Control | APDS-9960 sensor | • Gesture recognition (swipe left/right/up/down)<br>• Proximity sensing for continuous effects<br>• Sensor calibration and debouncing<br>• Map gestures to audio parameters | • Gesture event handler<br>• Clean API for gesture data<br>• Testing/simulation mode |
-| **Zoe Tseng (yzt2)** | MediaPipe Hand Pose | Pi Camera | • Real-time hand tracking<br>• Pose classification (open/fist/counting)<br>• Hand rotation detection<br>• Performance optimization | • Hand state data output<br>• Pose recognition API<br>• Keyboard fallback mode |
-| **Eva Huang (lh764)** | Audio Engine + Visual Feedback | PiTFT display + speakers + LEDs + browser interface | • Audio sample management & playback<br>• Real-time mixing and effects<br>• Multi-modal feedback (display/LED/audio)<br>• System integration coordinator | • Audio output system<br>• Visual feedback interface<br>• Integration framework |
+| **Charlotte Lin (hl2575)** | APDS Gesture Control + Speech Recognition | APDS-9960 sensor + Speakers | • Gesture recognition <br>• Sensor calibration <br>• Speech recognition | • Gesture event handler<br> • Web UI Interface<br> • Audio processing |
+| **Eva Huang (lh764)** | MediaPipe Hand Pose + Audio Engine | Pi Camera + Speakers | • Real-time hand tracking<br>• Pose classification (open/fist/counting)<br>• Performance optimization | • Hand state data output<br>• Pose recognition API<br>• Real-time mixing effects<br>|
+| **Zoe Tseng (yzt2)** |  Visual Feedback + Device Physical Design | PiTFT display + Pi Camera + Speakers| • Laser cut for physical device  <br> • System integration coordinator <br> • UI interface | • Web UI interface<br>• Integration framework<br> • Device Physical Design |
 
 ---
 
 ## Big Idea
 
-Create **"Gesture DJ"** – a hand-controlled sound toy that combines APDS gesture sensing and MediaPipe hand-pose recognition to create an embodied music interaction experience. Users control sound loops, effects, and mixing through intuitive hand movements and gestures, with **multi-modal feedback** including visual display, LED indicators, and audio cues that respond immediately to gestures.
+Create **"Gesture DJ"** – a hand-controlled sound toy that combines APDS gesture sensing and MediaPipe hand-pose recognition to create an embodied music interaction experience. Users control sound loops, effects, and mixing through intuitive hand movements and gestures, with **multi-modal feedback** including visual display, web user interface and audio cues that respond immediately to gestures.
 
-**Core Concept:** Transform physical gestures into musical expression—swipe to switch tracks, raise your hand to increase volume, make a fist to add distortion, open your palm to trigger effects. The system responds with immediate audio changes and **rich, clear feedback** through multiple channels, creating an intuitive, playful DJ experience.
+**Core Concept:** Transform physical gestures into musical expression : swipe to switch tracks, raise your hand to increase volume, make a fist to add distortion, open your palm to trigger effects. The system responds with immediate audio changes and **clear feedback** through multiple channels, creating an intuitive and playful DJ experience.
 
 ### Interaction Flow
 1. **Start System** → Display shows ready state with available loops/sounds, LEDs indicate system status
-2. **APDS Gestures** → Quick swipes and proximity control for discrete actions (track selection, volume)
-3. **Hand Poses** → Expressive control for continuous effects (filters, pitch, reverb)
-4. **Multi-Modal Feedback:**
-   - **PiTFT Display:** Current track/mode/gesture recognition
-   - **LED Indicators:** Real-time beat visualization, active effects, gesture confirmation
+2. **APDS Gestures** → Quick swipes and gesture control for discrete actions (track selection, volume)
+3. **Hand Poses** → Expressive control for continuous effects (add sound effects, control visual effects)
+4. **Sppech Recognition** → User say "Pause" or "Play" to control music
+5. **Multi-Modal Feedback:**
+   - **PiTFT Display:** Current song track/mode
    - **Audio Feedback:** Confirmation sounds for successful gestures
-   - **Browser Interface (fallback):** Larger visualization if PiTFT proves too small
-5. **Audio Output** → Layered loops and effects respond immediately to gestures
-
-![Untitled diagram-2025-11-09-203615](https://hackmd.io/_uploads/B18vouAJWl.png)
+   - **Browser Interface:** Larger visualization if PiTFT proves too small
+      -  **Waveform diagrams :** : Real-time beat visualizations, active effects
+      -  **Camera :** : Real-time visual camera interface for gesture recognition
+      -  **Track information** : Real-time indicator of current song track/mode
+6. **Audio Output** → Layered loops and effects respond immediately to gestures
 
 ---
 
@@ -69,7 +71,6 @@ Create **"Gesture DJ"** – a hand-controlled sound toy that combines APDS gestu
    - Primary gesture input → Audio connection
    - Secondary gesture input → Audio connection
    - Test gesture-to-sound mappings
-   - **Add LED feedback for gesture confirmation**
 
 5. **Days 10-11:** Full system integration + **feedback enhancement**
    - Combine all three modules
@@ -114,13 +115,11 @@ Create **"Gesture DJ"** – a hand-controlled sound toy that combines APDS gestu
 * Pi Camera (for MediaPipe)
 * Speakers/audio output
 
-**Need to Acquire:**
-* **LEDs (NeoPixel strip or individual LEDs)** - for enhanced visual feedback
-* Breadboard/jumper wires for LED connections
-
 **Optional Enhancements:**
-* USB microphone (for audio sampling - stretch goal)
+* **MPR121 Touch Sensor** - for optional touch pad controls (Pads 0-11)
+* USB microphone (for voice commands and audio sampling)
 * External monitor/screen if browser interface is needed
+* Physical device design
 
 ---
 
@@ -139,10 +138,10 @@ Create **"Gesture DJ"** – a hand-controlled sound toy that combines APDS gestu
 ```
 
 **Gesture Mappings:**
-- Swipe Left/Right: Previous/Next track
-- Swipe Up/Down: Volume up/down
-- Proximity: Filter cutoff frequency (closer = more filter)
-
+- Swipe RIGHT: Next track (auto-play)
+- Swipe LEFT: Previous track (auto-play)
+- Swipe UP: Volume up (+10%)
+- Swipe DOWN: Volume down (-10%)
 **Note:** Based on early testing, this may become primary or secondary input method.
 
 ### Module 2: MediaPipe Hand Pose
@@ -160,38 +159,143 @@ Create **"Gesture DJ"** – a hand-controlled sound toy that combines APDS gestu
 ```
 
 **Pose Mappings:**
-- Open Palm: Play/resume
-- Closed Fist: Pause + distortion effect
-- Finger Count: Select loop layer (1-5)
-- Hand Rotation: Pitch bend or reverb amount
-
+-  OPEN PALM (5 fingers): Light theme (baby blue UI) - Hold for 2.5 seconds
+-  CLOSED FIST (0 fingers): Dark theme (midnight UI) - Hold for 2.5 seconds
+-  PEACE SIGN (2 fingers): DJ scratch effect - Instant trigger (no hold required)
 **Note:** Based on early testing, this may become primary or secondary input method.
 
-### Module 3: Audio Engine + Multi-Modal Feedback
+### Module 3: MPR121 Touch Controls 
+**Inputs:** MPR121 capacitive touch sensor data
+
+**Outputs:**
+```python
+{
+  'pad': 0-11,
+  'state': 'pressed' | 'released',
+  'timestamp': float
+}
+```
+**Touch Pad Mappings:**
+- Pad 0-9: Select track 1-10
+- Pad 10: Play/Pause toggle
+- Pad 11: Stop playback
+**Note:** Optional enhancement module for direct track selection.
+
+### Module 4: Voice Commands
+**Inputs:** USB microphone audio stream
+
+**Outputs:**
+```python
+{
+  'command': 'play' | 'pause',
+  'confidence': 0.0-1.0,
+  'timestamp': float
+}
+```
+
+**Voice Command Mappings:**
+- "play" / "start" / "go" / "resume": Start/resume playback
+- "pause" / "stop" / "wait" / "hold": Pause playback
+**Note:** Alternative words also work for more natural interaction.
+
+
+### Module 5: Audio Engine + Audio Feedback
 **Inputs:** Gesture data from both modules
 
 **Outputs:** 
 - Audio output (mixed loops + effects)
 - PiTFT display (current state, gesture recognition)
-- LED indicators (beat visualization, active effects)
-- Browser interface (optional, if PiTFT too small)
+- Browser interface 
 - Audio confirmation sounds
 
 **Responsibilities:**
 - Maintain audio state (active loops, effect levels)
 - Mix multiple audio streams in real-time
 - Render feedback across multiple channels:
-  - **PiTFT Display:** Text/graphics showing current track, mode, detected gestures
-  - **LED Feedback:** Color-coded status (e.g., red=recording, green=playing, blue=effect active), beat-reactive patterns
   - **Audio Cues:** Short confirmation sounds when gestures are recognized
-  - **Browser Interface (fallback):** Flask server serving larger visualization
 - Coordinate timing between modules
 
-**Feedback Design Principles (addressing instructor concern):**
-- **Immediate:** Feedback appears within 100ms of gesture
-- **Clear:** Multiple channels ensure DJ always knows system state
-- **Scalable:** Can switch to browser interface if PiTFT insufficient
-- **Visible:** LED placement optimized for demo viewing angles
+### Module 6: Browser interface + PiTFT display
+**Web Visualization Features:**
+- Access at `http://<pi-ip>:5000` when running with `--web` flag
+- **Browser Interface :** Flask server serving larger visualization with multiple modes (can be changed through user gesture)
+- **Theme** : Game and neon themes to match with the DJ aesthetic
+- **Main Component :**
+   1. **Visualization Choice**
+    - **WAVEFORM:** Real-time waveform with beat-reactive glow
+    - **SPECTRUM:** Frequency spectrum analyzer with color gradient
+    - **AUDIENCE:** RGB bars bouncing with bass, party mode
+    - **PARTICLES:** Pulsing rings with particle burst effects
+   2.  **Basic Track Controls**
+   - `play`, `pause`, `swtich tracks`
+   3. **Camera Preview interface** : window showing Pi's camera feed
+
+
+- **PiTFT Display:** Text/graphics showing current track, mode, detected gestures
+
+---
+## Controls Reference
+
+### APDS-9960 Gesture Controls
+
+| Gesture | Action |
+|---------|--------|
+| Swipe RIGHT | Next track (auto-play) |
+| Swipe LEFT | Previous track (auto-play) |
+| Swipe UP | Volume up (+10%) |
+| Swipe DOWN | Volume down (-10%) |
+
+### MPR121 Touch Controls (Optional)
+
+| Pad | Action |
+|-----|--------|
+| Pad 0-9 | Select track 1-10 |
+| Pad 10 | Play/Pause toggle |
+| Pad 11 | Stop playback |
+
+### MediaPipe Hand Gestures (Camera Required)
+
+| Gesture | Fingers | Action | Hold Time |
+|---------|---------|--------|-----------|
+|  OPEN PALM | 5 | Light theme (baby blue UI) | 2.5 seconds |
+|  CLOSED FIST | 0 | Dark theme (midnight UI) | 2.5 seconds |
+|  PEACE SIGN | 2 | DJ scratch effect | Instant |
+
+**Tips:**
+- Hold palm/fist gestures for 2.5 seconds to change theme
+- Peace sign triggers immediately (no hold required)
+- Keep hand 1-2 feet from camera for best detection
+- Use good lighting for accurate gesture recognition
+- Camera feed visible in web UI (top-right corner)
+- Scratch effect plays random scratch sound over music
+
+### Voice Commands
+
+| Command | Action |
+|---------|--------|
+| "play" | Start/resume playback |
+| "pause" | Pause playback |
+
+**Alternative words also work:**
+- Play: "start", "go", "resume"
+- Pause: "stop", "wait", "hold"
+
+### Web Visualization Modes
+
+When running with `--web`, access the visualizer at `http://<pi-ip>:5000`:
+
+| Mode | Description |
+|------|-------------|
+| WAVEFORM | Real-time waveform with beat-reactive glow |
+| SPECTRUM | Frequency spectrum analyzer with color gradient |
+| AUDIENCE | RGB bars bouncing with bass, party mode |
+| PARTICLES | Pulsing rings with particle burst effects |
+
+**Features:**
+-  Track waveform visualization - see beats and peaks
+-  Frequency spectrum with bass/mid/high analysis
+-  RGB bars bounce with bass levels
+-  Reactive particle effects on beat detection
 
 ---
 
@@ -260,14 +364,3 @@ Simplify to one gesture input method (likely APDS for reliability) + Audio outpu
 - **DJ receives clear, immediate feedback through at least 2 channels (visual + audio)**
 - **Input method decision made by Day 2 based on real testing**
 - Demo runs reliably for 3+ minutes without crashes
-
----
-
-## Deliverables
-- [x] Project plan: Big idea, timeline, parts needed, fall-back plan.
-- [ ] Functioning project: The finished project should be a device, system, interface, etc. that people can interact with.
-- [ ] Documentation of design process
-- [ ] Archive of all code, design patterns, etc. used in the final design. (As with labs, the standard should be that the documentation would allow you to recreate your project if you woke up with amnesia.)
-- [ ] Video of someone using your project
-- [ ] Reflections on process (What have you learned or wish you knew at the start?)
-- [ ] Group work distribution questionnaire

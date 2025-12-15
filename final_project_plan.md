@@ -122,8 +122,11 @@ Create **"Gesture DJ"** – a hand-controlled sound toy that combines APDS gestu
 * Physical device design
 
 ---
+## Physical Device Design
+Design sketch | <img src="https://hackmd.io/_uploads/HktUWkCfbl.png" width="600">
 
 ## Technical Architecture
+![Decision Path Selection Flow-2025-12-15-030217](https://hackmd.io/_uploads/H1MfoeazWx.png)
 
 ### Module 1: APDS Gesture Control
 **Inputs:** APDS-9960 sensor data

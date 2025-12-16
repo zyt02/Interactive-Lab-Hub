@@ -14,7 +14,7 @@ mediapipe==0.10.18
 pillow==11.3.0
 pygame==2.5.2
 lgpio
-vosk==0.3.45
+vosk==0.3.44
 sounddevice==0.5.3
 flask>=3.0.0
 flask-socketio>=5.0.0

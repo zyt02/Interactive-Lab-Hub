@@ -9,7 +9,8 @@ import threading
 import time
 import random
 import math
-from flask import Flask, render_template, jsonify, send_from_directory
+import cv2
+from flask import Flask, render_template, jsonify, send_from_directory, Response
 from flask_socketio import SocketIO, emit
 
 # Create Flask app
@@ -35,16 +36,37 @@ audio_state = {
     'mid_level': 0,
     'high_level': 0,
     'beat_detected': False,
+    # Mood lighting state
+    'mood': {
+        'mood': 'default',
+        'mood_config': {
+            'name': 'Default',
+            'gradient': ['#0a0a1a', '#1a0a2e', '#0a1a2e'],
+            'primary': '#ff0080',
+            'secondary': '#00ffff',
+            'emoji': '🌆'
+        },
+        'effects_enabled': False
+    },
+    # Hand distance for scratch control
+    'hand_distance': 0.5,
+    'scratch_rate': 1.0
 }
 
-# Reference to audio engine (set by main app)
+# Reference to audio engine and hand tracker (set by main app)
 audio_engine = None
+hand_tracker = None
 
 
 def set_audio_engine(engine):
     """Set the audio engine reference"""
     global audio_engine
     audio_engine = engine
+
+def set_hand_tracker(tracker):
+    """Set the hand tracker reference for camera streaming"""
+    global hand_tracker
+    hand_tracker = tracker
 
 
 def generate_fake_audio_data():
@@ -123,6 +145,12 @@ def get_state():
     return jsonify(audio_state)
 
 
+@app.route('/effects/<path:filename>')
+def serve_effect(filename):
+    """Serve effect sound files"""
+    return send_from_directory('effects', filename)
+
+
 @app.route('/api/control/<action>', methods=['POST'])
 def control(action):
     """Control audio playback"""
@@ -184,11 +212,57 @@ def handle_scratch(data):
     print(f'[Web] Scratch: {direction}')
     # Could adjust playback position here
 
+def generate_camera_frames():
+    """Generate MJPEG frames from hand tracker"""
+    global hand_tracker
+    frame_skip = 0
+    
+    while True:
+        try:
+            if hand_tracker and hasattr(hand_tracker, 'last_frame') and hand_tracker.last_frame is not None:
+                # Skip every other frame for better performance
+                frame_skip += 1
+                if frame_skip % 2 == 0:
+                    # Encode frame to JPEG with lower quality for performance
+                    ret, buffer = cv2.imencode('.jpg', hand_tracker.last_frame, 
+                                               [cv2.IMWRITE_JPEG_QUALITY, 70])
+                    if ret:
+                        frame = buffer.tobytes()
+                        yield (b'--frame\r\n'
+                               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+            time.sleep(0.05)  # ~20 FPS
+        except Exception as e:
+            print(f"[Web] Camera stream error: {e}")
+            time.sleep(0.1)
+
+
+@app.route('/video_feed')
+def video_feed():
+    """MJPEG camera stream (like demo.py)"""
+    return Response(generate_camera_frames(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
 
 def update_state(new_state):
     """Update audio state from main app"""
     global audio_state
+    
+    # Check if mood changed
+    old_mood = audio_state.get('mood', {}).get('mood')
+    new_mood = new_state.get('mood', {}).get('mood')
+    
+    if old_mood != new_mood:
+        print(f"[Web] Mood changed: {old_mood} -> {new_mood}")
+    
     audio_state.update(new_state)
+    
+    # Broadcast immediately if mood changed
+    if old_mood != new_mood:
+        print(f"[Web] Broadcasting mood update to clients...")
+        socketio.emit('audio_update', audio_state)
+
+# Camera streaming now uses MJPEG via /video_feed route (like demo.py)
+# No need for WebSocket camera frame broadcasting
 
 
 def run_server(host='0.0.0.0', port=5000, debug=False):

@@ -44,14 +44,6 @@ A multi-modal DJ controller for Raspberry Pi that uses gesture sensors, touch in
 | 📋 Project Plan | [View Plan](https://github.com/zyt02/Interactive-Lab-Hub/blob/Fall2025/final_project_plan.md) |
 | 📝 Design Documentation | See [Design Documentation](#design-documentation) below |
 | 💻 Code Archive | This repository |
-| 💭 Reflections | See [Reflection](#reflection) below |
-
-
-**Functioning project:** The finished project should be a device, system, interface, etc. that people can interact with.
-**Archive of all code, design patterns, etc. used in the final design.** : (As with labs, the standard should be that the documentation would allow you to recreate your project if you woke up with amnesia.)
-**Video of someone using your project :**
-**Group work distribution questionnaire : ?**
-
 
 ## Design Documentation
 
